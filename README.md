@@ -25,20 +25,43 @@ central-standards/
 
 ## วิธีใช้ (โปรเจกต์ปลายทาง)
 
-1. ก๊อปปี้ `consumer/standards.example.json` ไปไว้ที่ root โปรเจกต์ของคุณ ตั้งชื่อ `standards.json`
-2. แก้ค่า:
-   - `source` — URL ของ git repo กลางนี้ (หรือ path ในเครื่องตอนทดสอบ)
-   - `ref` — branch/tag ที่ pin ไว้ (เช่น `v1.0.0`) เพื่อล็อกเวอร์ชันมาตรฐาน
-   - `packs` — รายชื่อ pack ที่โปรเจกต์ใช้ เช่น `["nextjs-seo","spring-boot"]`
-3. รัน sync:
-   ```powershell
-   pwsh ./consumer/sync-standards.ps1 -Config ./standards.json    # Windows
-   ```
-   ```bash
-   ./consumer/sync-standards.sh ./standards.json                  # macOS/Linux
-   ```
-4. สคริปต์จะ clone repo กลางตาม `ref` แล้วประกอบ `core/` + `packs/` ที่เลือก เขียนลง `CLAUDE.md`
-   ภายในบล็อก marker `<!-- BEGIN central-standards (generated) -->`
+**คุณมีแค่ `standards.json` ไฟล์เดียวก็พอ** — ตัวรันจะถูกดึงจาก repo กลางอัตโนมัติ
+
+**1. สร้าง `standards.json` ที่ root โปรเจกต์** (ก๊อปจาก `consumer/standards.example.json`):
+```json
+{
+  "source": "https://github.com/sasue1994/ai-central-standards.git",
+  "ref": "main",
+  "packs": ["nextjs-seo", "spring-boot", "linebot", "cicd-security"],
+  "output": "CLAUDE.md"
+}
+```
+- `source` — URL ของ repo กลางนี้
+- `ref` — branch/tag ที่ pin ไว้ (เช่น `v1.0.0`) เพื่อล็อกเวอร์ชันมาตรฐาน
+- `packs` — เลือกเฉพาะ pack ที่โปรเจกต์ใช้
+
+**2. รัน bootstrap one-liner** (ในโฟลเดอร์ที่มี `standards.json`):
+```powershell
+# Windows PowerShell
+irm https://raw.githubusercontent.com/sasue1994/ai-central-standards/main/consumer/bootstrap.ps1 | iex
+```
+```bash
+# macOS / Linux (ต้องมี git, jq, curl)
+curl -fsSL https://raw.githubusercontent.com/sasue1994/ai-central-standards/main/consumer/bootstrap.sh | bash
+```
+
+bootstrap จะอ่าน `standards.json` → ดึงตัวรัน `sync-standards` จาก repo กลางตาม `ref` → ประกอบ
+`core/` + `packs/` ที่เลือก เขียนลง `CLAUDE.md` ภายในบล็อก `<!-- BEGIN central-standards (generated) -->`
+
+> ต้องมี **git** ในเครื่อง (ใช้ clone repo กลาง)
+
+### ทางเลือก: รันตัวรันตรง ๆ (ถ้า vendor สคริปต์ไว้ในโปรเจกต์เอง)
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File ./sync-standards.ps1 -Config ./standards.json
+```
+```bash
+./sync-standards.sh ./standards.json
+```
 
 ## หลักการ
 
