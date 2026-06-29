@@ -19,7 +19,7 @@ if (-not (Test-Path $Config)) {
   throw "ไม่พบ $Config — สร้าง standards.json ที่ root โปรเจกต์ก่อน (ดูตัวอย่างใน repo กลาง consumer/standards.example.json)"
 }
 
-$cfg = Get-Content -Raw -Path $Config | ConvertFrom-Json
+$cfg = Get-Content -Raw -Encoding utf8 -Path $Config | ConvertFrom-Json
 if (-not $cfg.source) { throw "standards.json ต้องมี 'source' (URL ของ repo กลาง)" }
 $ref = if ($cfg.ref) { $cfg.ref } else { "main" }
 

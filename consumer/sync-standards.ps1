@@ -23,7 +23,7 @@ $END   = "<!-- END central-standards (generated) -->"
 
 function Read-Config([string]$path) {
   if (-not (Test-Path $path)) { throw "ไม่พบ config: $path" }
-  return Get-Content -Raw -Path $path | ConvertFrom-Json
+  return Get-Content -Raw -Encoding utf8 -Path $path | ConvertFrom-Json
 }
 
 function Resolve-Source($source, $ref) {
@@ -50,7 +50,7 @@ function Build-Block($root, $packs) {
     $p = Join-Path $root $f
     if (Test-Path $p) {
       [void]$sb.AppendLine("<!-- core:$f -->")
-      [void]$sb.AppendLine((Get-Content -Raw -Path $p).TrimEnd())
+      [void]$sb.AppendLine((Get-Content -Raw -Encoding utf8 -Path $p).TrimEnd())
       [void]$sb.AppendLine("")
     }
   }
@@ -60,7 +60,7 @@ function Build-Block($root, $packs) {
     $p = Join-Path $root "packs/$pack/CLAUDE.md"
     if (-not (Test-Path $p)) { throw "ไม่พบ pack '$pack' ที่ $p" }
     [void]$sb.AppendLine("<!-- BEGIN pack:$pack -->")
-    [void]$sb.AppendLine((Get-Content -Raw -Path $p).TrimEnd())
+    [void]$sb.AppendLine((Get-Content -Raw -Encoding utf8 -Path $p).TrimEnd())
     [void]$sb.AppendLine("<!-- END pack:$pack -->")
     [void]$sb.AppendLine("")
   }
@@ -71,7 +71,7 @@ function Build-Block($root, $packs) {
 
 function Write-Output-File($outPath, $block) {
   $existing = ""
-  if (Test-Path $outPath) { $existing = Get-Content -Raw -Path $outPath }
+  if (Test-Path $outPath) { $existing = Get-Content -Raw -Encoding utf8 -Path $outPath }
 
   if ($existing -match [regex]::Escape($BEGIN)) {
     # แทนที่เฉพาะบล็อก generated เดิม (ใช้ MatchEvaluator เลี่ยงปัญหา $-escaping ใน replacement)
