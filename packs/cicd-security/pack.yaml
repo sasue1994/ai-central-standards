@@ -1,0 +1,8 @@
+name: cicd-security
+version: 1.0.0
+title: CI/CD + Security
+applies-to:
+  - ทุกโปรเจกต์ที่มี pipeline (frontend/backend/bot)
+provides:
+  - CLAUDE.md
+tags: [cicd, security, devops, sast, dast]

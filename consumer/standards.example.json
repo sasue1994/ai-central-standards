@@ -1,0 +1,7 @@
+{
+  "$schema": "ดูคำอธิบายแต่ละฟิลด์ด้านล่างใน README ของ central-standards",
+  "source": "https://github.com/<org>/central-standards.git",
+  "ref": "v1.0.0",
+  "packs": ["nextjs-seo", "spring-boot", "linebot", "cicd-security"],
+  "output": "CLAUDE.md"
+}

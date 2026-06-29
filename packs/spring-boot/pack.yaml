@@ -1,0 +1,8 @@
+name: spring-boot
+version: 1.0.0
+title: Spring Boot backend
+applies-to:
+  - Spring Boot 4 / Java 25 microservices
+provides:
+  - CLAUDE.md
+tags: [backend, java, spring-boot, jpa, microservice]

@@ -1,0 +1,8 @@
+name: nextjs-seo
+version: 1.0.0
+title: Next.js + SEO/AISEO
+applies-to:
+  - Next.js 14+ App Router projects (TypeScript, Tailwind)
+provides:
+  - CLAUDE.md   # มาตรฐาน rendering, SEO, AISEO, Core Web Vitals
+tags: [frontend, nextjs, seo, aiseo]

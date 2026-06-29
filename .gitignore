@@ -1,0 +1,3 @@
+# temp clone dirs ของ sync script จะอยู่ที่ system temp อยู่แล้ว
+*.tmp
+.DS_Store

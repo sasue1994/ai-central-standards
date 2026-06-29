@@ -1,0 +1,8 @@
+name: linebot
+version: 1.0.0
+title: LINE bot
+applies-to:
+  - LINE Messaging API webhooks, LIFF apps
+provides:
+  - CLAUDE.md
+tags: [linebot, webhook, liff, messaging]

@@ -1,0 +1,32 @@
+# ดัชนีรวมมาตรฐานกลาง — โปรเจกต์ปลายทางอ้างอิงชื่อ pack จากที่นี่
+version: 1.0.0
+updated: 2026-06-29
+
+core:
+  - core/workflow.md
+  - core/conventions.md
+
+packs:
+  nextjs-seo:
+    version: 1.0.0
+    title: Next.js + SEO/AISEO
+    description: App Router, SSG/ISR/SSR, generateMetadata, JSON-LD, Core Web Vitals
+    path: packs/nextjs-seo
+
+  spring-boot:
+    version: 1.0.0
+    title: Spring Boot backend
+    description: Spring Boot 4 / Java 25 microservices, JPA/Flyway, auth realms, testing
+    path: packs/spring-boot
+
+  linebot:
+    version: 1.0.0
+    title: LINE bot
+    description: Webhook signature verify, messaging API, LIFF, rich menu, security
+    path: packs/linebot
+
+  cicd-security:
+    version: 1.0.0
+    title: CI/CD + Security
+    description: Pipeline stages, secret management, SAST/DAST, dependency & container scanning
+    path: packs/cicd-security

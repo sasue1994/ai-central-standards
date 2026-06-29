@@ -1,0 +1,6 @@
+{
+  "source": "../..",
+  "ref": "main",
+  "packs": ["spring-boot", "linebot", "cicd-security"],
+  "output": "CLAUDE.md"
+}
