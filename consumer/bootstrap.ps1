@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   One-liner bootstrap — รันในโฟลเดอร์โปรเจกต์ที่มี standards.json
 

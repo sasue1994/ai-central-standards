@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   ดึงมาตรฐานจาก central-standards repo มาประกอบเป็น CLAUDE.md ของโปรเจกต์ปลายทาง
 
