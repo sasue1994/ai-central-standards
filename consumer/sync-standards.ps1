@@ -34,7 +34,10 @@ function Resolve-Source($source, $ref) {
   # ไม่งั้น clone แบบ shallow ตาม ref ไปยัง temp
   $tmp = Join-Path ([System.IO.Path]::GetTempPath()) ("central-standards-" + [guid]::NewGuid().ToString("N"))
   Write-Host "Cloning $source @ $ref ..."
-  git clone --depth 1 --branch $ref $source $tmp 2>&1 | Out-Null
+  # หมายเหตุ: ห้ามใช้ 2>&1 — PS 5.1 จะห่อ stderr ปกติของ git (เช่น "Cloning into...")
+  # เป็น NativeCommandError แล้วกับ $ErrorActionPreference='Stop' จะ throw ทั้งที่ clone สำเร็จ
+  # ใช้ --quiet เงียบ progress แทน แล้วเช็คผลด้วย $LASTEXITCODE
+  git clone --quiet --depth 1 --branch $ref $source $tmp
   if ($LASTEXITCODE -ne 0) { throw "git clone ล้มเหลว ($source @ $ref)" }
   return @{ Path = $tmp; Temp = $tmp }
 }
